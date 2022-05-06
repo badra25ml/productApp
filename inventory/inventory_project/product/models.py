@@ -5,7 +5,7 @@ from django.utils import timezone
 
 # Create your models here.
 
-class Product(models.Model):
+class Product(models.Model): # Please add Image Field here 
     # id = models.PositiveBigIntegerField(primary_key=True)
     name = models.CharField(max_length=50, null=False)
     price = models.IntegerField(null=False) # make if float data
