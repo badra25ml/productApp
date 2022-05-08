@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="{% static 'base.css' %}">
+    <title>{% block title %} {% endblock %}</title>
+</head>
+<body>
+<div id="header">
+    Welcome to the inventory products Application !!
+    <a href="{% url 'logout' %}">LogOut</a>
+</div>
+
+<!--<div id="sidebar">-->
+<!--    menu-->
+<!--</div>-->
+  {% block content %} {% endblock %}
+</body>
+</html>
