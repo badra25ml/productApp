@@ -4,16 +4,17 @@ from inventoryapp.forms import ProductForm
 from inventoryapp.models import Product
 from . import views
 
-from inventoryapp.views import productcreate,listOfProducts, listOfProductsdetail, ListOfProducts, ProductCreate, ProductUpdate, ProductDelete, productupdate
+from inventoryapp.views import productcreate,listOfProducts, listOfProductsdetail, ListOfProducts, ProductCreate, ProductUpdate, ProductDelete, productupdate, ProductDeleteView
 
 
 
 
 app_name = 'inventoryapp'
 urlpatterns = [
-    re_path(r'^$', ListOfProducts.as_view(), name='inventory_list'),
-    path('create/', productcreate, name='inventory_create'),
-    re_path('update/', productupdate, name='inventory_update'),
+    # re_path(r'^$', ListOfProducts.as_view(), name='inventory_list'),
+    # path('create/', productcreate, name='inventory_create'),
+    # path('delete/', ProductDeleteView.as_view(), name='delete'),
+    
     # path('', listOfProducts),
     # path('1/', listOfProducts),
 ]

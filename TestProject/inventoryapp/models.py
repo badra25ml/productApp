@@ -15,8 +15,8 @@ class Product(models.Model):
 
 # writer = models.# logged in
     def __str__(self):
-        return self.title
+        return self.name
 
     def get_absolute_url(self):
-        return  reverse_lazy('inventory_project:inventory_list')
+        return  reverse_lazy('inventoryapp:inventory_list')
     
