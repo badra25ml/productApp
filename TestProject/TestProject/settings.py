@@ -126,5 +126,5 @@ MEDIA_URL = 'media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = 'inventoryp:inventory_list'
+LOGIN_REDIRECT_URL = 'inventoryapp:inventory_detail'
 LOGOUT_REDIRECT_URL = 'login'

@@ -3,7 +3,6 @@
 {% block content %}
     {{ request }} <br>
     Here is the user who is logged in - {{ request.user }} <br>
-    Here is the user who is logged in - {{ request.user }} <br>
     Is user authenticated ? - {{ request.user.is_authenticated }}<br>
     {% for items in object_list %}
         <a href="{% url 'inventoryapp:inventory_detail' items.pk  %}"> {{ items.title }} </a> {{ items.created_date}}
@@ -12,18 +11,3 @@
         There are no products to show!
     {% endfor %}<br>
 {% endblock %}
-
-<!-- <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Inventory List</title>
-</head>
-<body>
-
-{% for items in object_list %}
-<a href="{% url 'inventoryapp:inventory_detail.html'  %}" ></a>{{ items.title }} </a> {{ items.created_date}} </br>
-{% endfor %}
-
-</body>
-</html> -->
