@@ -11,6 +11,12 @@ from inventoryapp.views import productcreate,listOfProducts, listOfProductsdetai
 
 app_name = 'inventoryapp'
 urlpatterns = [
+    path('', listOfProducts),
+    path('productlist/', listOfProductsdetail),
+    path('create/', productcreate, name='inventory_create'),
+    path('product/<pk>/delete', ProductDeleteView.as_view(), name='delete'),
+    path('product/<product_id>/update/', productupdate, name='update'),
+
     # re_path(r'^$', ListOfProducts.as_view(), name='inventory_list'),
     # path('create/', productcreate, name='inventory_create'),
     # path('delete/', ProductDeleteView.as_view(), name='delete'),

@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.contrib.auth.views import LoginView, LogoutView
 from django.http import HttpResponse
 from django.urls import path, include
+# import inventoryapp
 
 
 from inventoryapp.views import productcreate, listOfProducts, ProductCreate, ProductUpdate, ProductDelete, listOfProductsdetail, ProductDetail, ListOfProducts, ProductDeleteView, productupdate
@@ -28,14 +29,9 @@ from TestProject import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('inventoryapp/',ListOfProducts.as_view()),
-    path('', listOfProducts),
-    path('productlist/', listOfProductsdetail),
+    path('inventoryapp/',include('inventoryapp.urls')),
     path('login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', LogoutView.as_view(template_name='logout.html'), name='logout'),
-    path('create/', productcreate, name='inventory_create'),
-    path('product/<pk>/delete', ProductDeleteView.as_view(), name='delete'),
-    path('product/<product_id>/update/', productupdate, name='update'),
     # path('1/', listOfProducts),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
