@@ -10,7 +10,10 @@ from django.contrib import messages
 
 # Create your views here.
 
-
+def home(request):
+    qs = Product.objects.all() # [{ }, {} ]
+    context = {'base' : qs}
+    return render(request, 'inventoryapp/base.html', context ) # HttpResponse
 
 def listOfProducts(request):
     qs = Product.objects.all() # [{ }, {} ]
@@ -22,19 +25,18 @@ def listOfProductsdetail(request):
     qs = Product.objects.all() # [{ }, {} ]
    
     context = {'inventory_list' : qs}
-   
-    return render(request, 'inventoryapp/inventory_list.html', context ) # HttpResponse
+    return render(request, 'inventoryapp/inventory_detail.html', context ) # HttpResponse
 
 class ProductDetail(DetailView): # int is url - pk / slug
     model = Product
     template_name =  'inventoryapp/inventory_detail.html'
-    # context_object_name = 'blog' # object
+    # context_object_name = 'product' # object
 
 class ProductCreate(CreateView):
     model = Product
     form_class = ProductForm
     template_name = 'inventoryapp/inventory_create.html'
-    success_url = '/inventory_detail' 
+    success_url = '/productsdetail' 
     context_object_name = 'form'
 
 def productcreate(request):
@@ -43,18 +45,17 @@ def productcreate(request):
         return render(request, 'inventoryapp/inventory_create.html', {'form': form}) # form with data?
     else: # post
         form = ProductForm(request.POST) # ModelForm# Form
-        print(form)
         if form.is_valid():
             form.save()
-            # return HttpResponse('Blog is added')
-            return HttpResponseRedirect(reverse('inventoryapp:inventory_list'))
+            # return HttpResponse('Product is added')
+            return HttpResponseRedirect(reverse_lazy('inventoryapp:inventory_list'))
         else:
             return render(request,'inventoryapp/inventory_create.html', { 'form': form})
 
 class ListOfProducts(ListView):
     print(ListView)
     model = Product
-    template_name = 'inventoryapp/inventory_list.html'
+    template_name = 'inventoryapp/inventory_detail.html'
 
 class ProductUpdate(UpdateView):
     model = Product
@@ -75,8 +76,8 @@ def productupdate(request, product_id):
         else:
             render(request, 'inventoryapp/inventory_update.html', {'form': form})
 
-class ProductDeleteView(View):                                                            # view class to delete stock
-    template_name = "inventoryapp/inventory_delete.html"                                                 # 'delete_stock.html' used as the template
+class ProductDeleteView(DeleteView):                                                         # view class to delete product
+    template_name = "inventoryapp/inventory_delete.html"                                                 # 'inventory_delete.html' used as the template
     success_message = "Product has been deleted successfully"                             # displays message when form is submitted
     
     def get(self, request, pk):
@@ -85,7 +86,7 @@ class ProductDeleteView(View):                                                  
 
     def post(self, request, pk):  
         product = get_object_or_404(Product, pk=pk)
-        product.is_deleted = True
+        product.delete()
         product.save()                                               
         messages.success(request, self.success_message)
         return redirect('inventoryapp:inventory_list')

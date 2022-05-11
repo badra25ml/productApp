@@ -10,7 +10,7 @@ class Product(models.Model):
     price = models.FloatField(null=False) # make it float data # Done
     description = models.CharField(max_length=50, null=False)
     quantity = models.IntegerField(null=False)
-    created_dat = models.DateField(default=timezone.now)
+    created_date = models.DateField(default=timezone.now)
     image = models.ImageField(upload_to='inventoryapp/', null=True, blank=True) # locations S3, local, network// media
 
 # writer = models.# logged in

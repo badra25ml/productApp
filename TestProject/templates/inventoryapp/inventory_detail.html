@@ -5,10 +5,17 @@
     <title>Inventory Detail</title>
 </head>
 <body>
-<h1>{{ object.name }}</h1> <br>
+        <h1> products <br></h1>
+    {% for item in object_list %}
+       
+        Name: {{ item.name }}, {{item.id}} 
+        Created date: {{ item.created_date }}
+        Description: {{ item.description }}<br><br>
+        Image:  <img src="{{ item.image }}"><br><br>
 
-<img src="{{object.image.url}}">
-{{ object.description}} </br><br>
-{{ object.created_dat }}
+    <img src="{{item.image}}">
+        
+    {% endfor %}
+   
 </body>
 </html>

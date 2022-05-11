@@ -4,10 +4,16 @@
     <!-- {{ request }} <br>
     Here is the user who is logged in - {{ request.user }} <br>
     Is user authenticated ? - {{ request.user.is_authenticated }}<br> -->
-    {% for items in object_list %}
-        <a href="{% url 'inventoryapp:inventory_detail' items.pk  %}">  {{ items.name }} {{ items.created_dat}} </a>
-        <a href="{% url 'inventoryapp:inventory_update' items.pk %}"> Update </a></br>
-    {% empty %}
-        There are no products to show!
-    {% endfor %}<br>
+    
+{% for items in inventory_list %}
+
+        <a href="{% url 'inventoryapp:inventory_list'%}"> {{items.name}} </a><br>
+        
+
+{% empty %}
+    There are no products to show!
+    {{items}}
+ {% endfor %}
+    
 {% endblock %}
+<!-- <a href="{% url 'inventoryapp:inventory_update' items.id %}"> Update </a> -->
